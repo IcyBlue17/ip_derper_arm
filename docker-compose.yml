@@ -1,6 +1,6 @@
 services:
   derper:
-    image: ghcr.io/yangchuansheng/derper:latest
+    image: icymichiko/derper-arm:latest
     container_name: derper
     restart: always
     ports:

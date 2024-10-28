@@ -1,0 +1,14 @@
+services:
+  derper:
+    image: ghcr.io/yangchuansheng/derper:latest
+    container_name: derper
+    restart: always
+    ports:
+      - "12345:12345" # 这里的12345请改成你自己想要的10000以上的高位端口
+      - "3478:3478/udp" # 3478 为stun端口，如果不冲突请勿修改
+    volumes:
+      - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock # 映射本地 tailscale 客户端验证连接
+    environment:
+      - DERP_ADDR=:12345 # 此处需要与上面的同步修改
+      - DERP_CERTS=/app/certs
+      - DERP_VERIFY_CLIENTS=true # 启动客户端验证
